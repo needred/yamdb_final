@@ -1,10 +1,6 @@
 from .reviews import CommentSerializer, ReviewSerializer
-from .titles import (
-    CategorySerializer,
-    GenreSerializer,
-    TitleSerializer,
-    TitleWriteSerializer,
-)
+from .titles import (CategorySerializer, GenreSerializer, TitleSerializer,
+                     TitleWriteSerializer)
 from .users import SignUpSerializer, TokenSerializer, UserSerializer
 
 __all__ = (
