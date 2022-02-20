@@ -23,10 +23,11 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         title_id = self.context.get('view').kwargs.get('title_id')
-        if self.context.get('view').action == 'create' \
-                and Review.objects.filter(
-                author=self.context.get('request').user, title__id=title_id
-        ).exists():
+        if (self.context.get('view').action == 'create') and (
+                Review.objects.filter(
+                    author=self.context.get('request').user,
+                    title__id=title_id).exists()
+        ):
             raise serializers.ValidationError(
                 'Нельзя оставить второй комментарий'
             )

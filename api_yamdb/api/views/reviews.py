@@ -1,8 +1,10 @@
-from api.serializers.reviews import CommentSerializer, ReviewSerializer
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
+
 from rest_framework import permissions, viewsets
 from rest_framework.pagination import PageNumberPagination
+
+from api.serializers.reviews import CommentSerializer, ReviewSerializer
 from reviews.models import Review
 from titles.models import Title
 from users.permissions import IsAuthorOrAdminOrModerator
