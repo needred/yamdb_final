@@ -91,6 +91,10 @@ docker build -t username/imagename:version api_yamdb/.
 ```
 Соберите контейнеры:
 ```
+docker-compose -f infra/docker-compose.yaml up -d --build
+```
+или пересоберите:
+```
 docker-compose up -d --build
 ```
 Выполните миграции:
@@ -161,10 +165,15 @@ docker-compose exec web python manage.py migrate --noinput
 ```
 docker-compose exec web python manage.py createsuperuser
 ```
-При необходимости наполните базу тестовыми данными:
+При необходимости наполните базу тестовыми данными из ../yamdb_final/infra/:
+```
+docker exec -i infra_web_1 python manage.py loaddata --format=json - < fixtures.json
+```
+или
 ```
 docker-compose exec web python manage.py loaddata fixtures.json
 ```
+
 Также можно выполнить эти действия внутри контейнера. Отобразите список работающих контейнеров:
 ```
 sudo docker container ls -a
@@ -188,11 +197,11 @@ python manage.py loaddata infra/fixtures.json
 ```
 
 ## Ссылки
-### Документация API YaMDb
-Доступна по эндпойнту:
+### Документация API YaMDb - эндпойнт:
 ```json
 /redoc/
 ```
+http://84.201.167.253/redoc/
 ### Развёрнутый проект:
 http://84.201.167.253/api/v1/  
 http://84.201.167.253/admin/
